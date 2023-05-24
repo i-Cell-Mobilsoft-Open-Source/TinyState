@@ -1,0 +1,100 @@
+# Tiny State Service
+
+Tiny State Service is a TypeScript library for managing state in Angular applications. It provides decorators for defining state handlers, selectors, and selected properties, as well as a service for managing state and persisting it to a storage mechanism.
+
+## Installation
+
+To install Tiny State Service, run the following command:
+
+```bash
+npm install @i-cell/tiny-state
+```
+
+## Usage
+
+To use Tiny State Service in your Angular application, follow these steps:
+
+1. Import the `TinyStateService` from `@tiny-state/core` and add it to your application's providers.
+2. Define a state handler using the `TinyHandler` decorator.
+3. Define a selector using the `TinySelector` decorator.
+4. Define a selected property using the `TinySelect` decorator.
+5. Use the `TinyStateService` to get and set state.
+
+## API
+
+### `TinyHandler(persist?: boolean | Storage, type?: new () => T)`
+
+Decorator for defining a state handler.
+
+- `persist` (optional): Whether to persist the state to a storage mechanism. If true, the state will be persisted to localStorage. If a Storage object is provided, the state will be persisted to that storage mechanism. Defaults to false.
+- `type` (optional): The type of the state object. If provided, the state object will be created using the new operator with this type. Defaults to Object.
+
+### `TinySelector(path?: string)`
+
+Decorator for defining a state selector.
+
+- `path` (optional): The path inside the state object to select. Uses lodash's get function to select the value. Defaults to undefined.
+
+### `TinySelect(fn: Function)`
+
+Decorator for defining a selected property.
+
+- `fn`: A function that returns the selected value.
+
+### `TinyStateService`
+
+A service for managing state and persisting it to a storage mechanism.
+
+#### `getState(stateHandler: any)`
+
+Returns the state object for the given state handler.
+
+#### `getStoreMap(stateHandler: any)`
+
+Returns the store map for the given state handler.
+
+#### `createStore(identifier: string | symbol, value: any)`
+
+Creates a new store with the given identifier and value.
+
+#### `storeSelector(stateHandler: any, identifier: string | symbol, value: any)`
+
+Stores a selector with the given identifier and value for the given state handler.
+
+#### `storeSelectorSubject(stateHandler: any, identifier: string | symbol, subject: any)`
+
+Stores a selector subject with the given identifier and subject for the given state handler.
+
+#### `getSelectorSubject(stateHandler: any, identifier: string | symbol)`
+
+Returns the selector subject for the given identifier and state handler.
+
+#### `getSelector(stateHandler: any, identifier: string | symbol)`
+
+Returns the selector for the given identifier and state handler.
+
+#### `hasSelector(stateHandler: any, identifier: string | symbol)`
+
+Returns true if the given state handler has a selector with the given identifier.
+
+#### `initState(stateHandler: any)`
+
+Initializes the state for the given state handler.
+
+#### `checkStateHandler(stateHandler: any): boolean`
+
+Returns true if the given object is a TinyStateHandler and is not already in use.
+
+#### `addStateHandler(stateHandler: any)`
+
+Adds the given state handler to the service.
+
+#### `getInstance()`
+
+Returns the singleton instance of the TinyStateService.
+
+#### `persist(stateHandler: any, state: any)`
+
+Persists the state to a storage mechanism.
+
+License MIT
