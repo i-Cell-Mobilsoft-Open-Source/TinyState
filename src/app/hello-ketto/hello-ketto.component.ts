@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { TinySelect } from '@i-cell/tiny-state';
 import { TestStateTiny } from '../tiny-state/test-state.tiny';
-import { TinySelect } from '../tiny-state/tiny-state.service';
-
 @Component({
   selector: 'app-hello-ketto',
   templateUrl: './hello-ketto.component.html',

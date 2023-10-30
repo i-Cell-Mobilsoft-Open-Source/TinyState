@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+
 import { get as _get, set as _set } from 'lodash-es';
 
 /**
@@ -41,7 +42,7 @@ export function TinySelect(fn: Function) {
     const stateHandler = selectorMeta.parent;
     const selectorPath = selectorMeta.path;
     const handlerType = Reflect.getMetadata('tiny-state:handler', stateHandler.prototype.constructor);
-    console.log(handlerType);
+
     const handlerName = stateHandler.prototype.constructor.name;
     const tiny = TinyStateService.getInstance();
     let storedSelector: (target) => void;
@@ -109,7 +110,9 @@ export class TinyStateService {
   private static instance: TinyStateService;
   private storage: Map<string | symbol, Map<string | symbol, any>> = new Map();
 
-  constructor() {}
+  constructor() {
+    TinyStateService.instance = this;
+  }
 
   private getHandlerName(stateHandler: any) {
     return stateHandler.prototype.constructor.name;
@@ -137,27 +140,27 @@ export class TinyStateService {
 
   public storeSelector(stateHandler: any, identifier: string | symbol, value: any) {
     const storeMap: Map<string | symbol, any> = this.getStoreMap(stateHandler);
-    storeMap.set(identifier, value);
+    storeMap?.set(identifier, value);
   }
 
   public storeSelectorSubject(stateHandler: any, identifier: string | symbol, subject: any) {
     const storeMap: Map<string | symbol, any> = this.getStoreMap(stateHandler);
-    storeMap.set(`${identifier as string}:subject`, subject);
+    storeMap?.set(`${identifier as string}:subject`, subject);
   }
 
   public getSelectorSubject(stateHandler: any, identifier: string | symbol) {
     const storeMap: Map<string | symbol, any> = this.getStoreMap(stateHandler);
-    return storeMap.get(`${identifier as string}:subject`);
+    return storeMap?.get(`${identifier as string}:subject`);
   }
 
   public getSelector(stateHandler: any, identifier: string | symbol) {
     const storeMap: Map<string | symbol, any> = this.getStoreMap(stateHandler);
-    return storeMap.get(identifier);
+    return storeMap?.get(identifier);
   }
 
   public hasSelector(stateHandler: any, identifier: string | symbol) {
     const storeMap: Map<string | symbol, any> = this.getStoreMap(stateHandler);
-    return storeMap.has(identifier);
+    return storeMap?.has(identifier);
   }
 
   public initState(stateHandler: any) {

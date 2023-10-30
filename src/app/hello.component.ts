@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { TinySelect } from '@i-cell/tiny-state';
 import { TestStateTiny } from './tiny-state/test-state.tiny';
-import { TinySelect } from './tiny-state/tiny-state.service';
 
 @Component({
   selector: 'hello',
