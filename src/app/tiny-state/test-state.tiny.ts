@@ -1,4 +1,4 @@
-import { TinySelector, TinyHandler } from './tiny-state.service';
+import { TinyHandler, TinySelector } from "@i-cell/tiny-state";
 
 @TinyHandler<{ test: string; customer: { name: string } }>()
 export class TestStateTiny {

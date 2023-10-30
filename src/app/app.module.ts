@@ -1,23 +1,17 @@
-import { Injector, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
+import { TinyStateModule } from '@i-cell/tiny-state';
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
-import { TinyStateService } from './tiny-state/tiny-state.service';
-import { TestStateTiny } from './tiny-state/test-state.tiny';
 import { HelloKettoComponent } from './hello-ketto/hello-ketto.component';
-
-export let AppInjector;
+import { HelloComponent } from './hello.component';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, TinyStateModule],
   declarations: [AppComponent, HelloComponent, HelloKettoComponent],
   bootstrap: [AppComponent],
-  providers: [TinyStateService]
 })
 export class AppModule {
-  constructor(public injector: Injector) {
-    AppInjector = injector;
-  }
+  constructor() {}
 }
